@@ -5,6 +5,7 @@ import io.shirohoo.membercrud.domain.AbstractEntity;
 import io.shirohoo.membercrud.domain.member.dto.MemberDto;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
