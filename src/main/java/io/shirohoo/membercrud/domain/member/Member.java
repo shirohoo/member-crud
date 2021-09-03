@@ -47,9 +47,7 @@ public class Member extends AbstractEntity {
     }
 
     public Collection<? extends GrantedAuthority> getGrantedAuthorities() {
-        return new ArrayList<>() {{
-            add(new SimpleGrantedAuthority(role.getRole()));
-        }};
+        return Collections.singleton(new SimpleGrantedAuthority(role.getRole()));
     }
 
     public Member updatePassword(final MemberDto memberDto) {
