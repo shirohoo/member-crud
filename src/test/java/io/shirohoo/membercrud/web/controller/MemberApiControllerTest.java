@@ -41,7 +41,7 @@ class MemberApiControllerTest {
     void signUp() throws Exception {
         //given
         final MemberDto memberDto = MemberDto.of("shirohoo", "password");
-        String request = objectMapper.writeValueAsString(memberDto);
+        final String request = objectMapper.writeValueAsString(memberDto);
 
         // when
         ResultActions perform = mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/member")
@@ -61,7 +61,7 @@ class MemberApiControllerTest {
         //given
         final MemberDto memberDto = MemberDto.of("shirohoo", "password");
         memberRepository.save(Member.of(memberDto).encryptPassword(encoder));
-        String request = objectMapper.writeValueAsString(memberDto);
+        final String request = objectMapper.writeValueAsString(memberDto);
 
         // when
         ResultActions perform = mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/member")
@@ -82,7 +82,7 @@ class MemberApiControllerTest {
         // given
         final MemberDto memberDto = MemberDto.of("shirohoo", "password");
         memberRepository.save(Member.of(memberDto).encryptPassword(encoder));
-        String request = objectMapper.writeValueAsString(MemberDto.of("shirohoo", "drowssap"));
+        final String request = objectMapper.writeValueAsString(MemberDto.of("shirohoo", "drowssap"));
 
         // when
         ResultActions perform = mockMvc.perform(MockMvcRequestBuilders.put("/api/v1/member")
@@ -103,7 +103,7 @@ class MemberApiControllerTest {
         // given
         final MemberDto memberDto = MemberDto.of("shirohoo", "password");
         memberRepository.save(Member.of(memberDto).encryptPassword(encoder));
-        String request = objectMapper.writeValueAsString(MemberDto.of("does not exist id", "drowssap"));
+        final String request = objectMapper.writeValueAsString(MemberDto.of("does not exist id", "drowssap"));
 
         // when
         ResultActions perform = mockMvc.perform(MockMvcRequestBuilders.put("/api/v1/member")
@@ -124,7 +124,7 @@ class MemberApiControllerTest {
         // given
         final MemberDto memberDto = MemberDto.of("shirohoo", "password");
         memberRepository.save(Member.of(memberDto).encryptPassword(encoder));
-        String request = objectMapper.writeValueAsString(memberDto);
+        final String request = objectMapper.writeValueAsString(memberDto);
 
         // when
         ResultActions perform = mockMvc.perform(MockMvcRequestBuilders.delete("/api/v1/member")
@@ -145,7 +145,7 @@ class MemberApiControllerTest {
         // given
         final MemberDto memberDto = MemberDto.of("shirohoo", "password");
         memberRepository.save(Member.of(memberDto).encryptPassword(encoder));
-        String request = objectMapper.writeValueAsString(MemberDto.of("does not exist id", "drowssap"));
+        final String request = objectMapper.writeValueAsString(MemberDto.of("does not exist id", "drowssap"));
 
         // when
         ResultActions perform = mockMvc.perform(MockMvcRequestBuilders.delete("/api/v1/member")
