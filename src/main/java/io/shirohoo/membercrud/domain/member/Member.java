@@ -3,9 +3,9 @@ package io.shirohoo.membercrud.domain.member;
 import io.shirohoo.membercrud.config.security.type.Role;
 import io.shirohoo.membercrud.domain.AbstractEntity;
 import io.shirohoo.membercrud.domain.member.dto.MemberDto;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -21,8 +21,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member extends AbstractEntity {
 
+    @Column(unique = true, nullable = false)
     private String username;
 
+    @Column(nullable = false)
     private String password;
 
     @Enumerated(EnumType.STRING)
