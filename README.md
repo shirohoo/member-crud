@@ -23,7 +23,7 @@ $ git clone https://github.com/shirohoo/member-crud.git
 
 $ cd member-crud
 
-$ chmod -x ./gradlew
+$ chmod 755 ./gradlew
 
 $ ./gradlew build
 
