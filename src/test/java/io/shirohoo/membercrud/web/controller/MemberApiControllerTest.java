@@ -29,7 +29,7 @@ class MemberApiControllerTest {
     private final MemberRepository memberRepository;
     private final PasswordEncoder encoder;
 
-    public MemberApiControllerTest(final MockMvc mockMvc, final ObjectMapper objectMapper, final MemberRepository memberRepository, PasswordEncoder encoder) {
+    public MemberApiControllerTest(final MockMvc mockMvc, final ObjectMapper objectMapper, final MemberRepository memberRepository, final PasswordEncoder encoder) {
         this.mockMvc = mockMvc;
         this.objectMapper = objectMapper;
         this.memberRepository = memberRepository;
