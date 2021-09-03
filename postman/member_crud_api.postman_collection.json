@@ -7,9 +7,29 @@
   "item": [
     {
       "name": "회원가입",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
       "request": {
         "method": "POST",
         "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"username\": \"shirohoo\",\r\n    \"password\": \"password\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
         "url": {
           "raw": "http://localhost:8080/api/v1/member",
           "protocol": "http",
@@ -62,7 +82,7 @@
         "method": "POST",
         "header": [],
         "url": {
-          "raw": "http://localhost:8080/api/v1/member",
+          "raw": "http://localhost:8080/api/v1/logout",
           "protocol": "http",
           "host": [
             "localhost"
@@ -71,7 +91,7 @@
           "path": [
             "api",
             "v1",
-            "member"
+            "logout"
           ]
         }
       },
@@ -84,7 +104,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n    \"username\": \"shirohoo1\",\r\n    \"password\": \"password\"\r\n}",
+          "raw": "{\r\n    \"username\": \"shirohoo\",\r\n    \"password\": \"password1\"\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -114,7 +134,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n    \"username\": \"shirohoo1\",\r\n    \"password\": \"password\"\r\n}",
+          "raw": "{\r\n    \"username\": \"shirohoo\",\r\n    \"password\": \"password\"\r\n}",
           "options": {
             "raw": {
               "language": "json"
