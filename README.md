@@ -27,7 +27,7 @@ $ chmod 755 ./gradlew
 
 $ ./gradlew build
 
-$ java -jar build/lib/member-crud.jar
+$ java -jar build/libs/member-crud.jar
 ```
 
 <br />
