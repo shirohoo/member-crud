@@ -32,6 +32,14 @@ dependencies {
             'org.springframework.boot:spring-boot-starter-validation',
             'org.springframework.boot:spring-boot-starter-data-jpa'
     )
+    
+    testImplementation(
+            'org.springframework.security:spring-security-test'
+    )
+    
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'junit', module: 'junit'
+    }
 
     compileOnly(
             'org.projectlombok:lombok'
@@ -44,14 +52,6 @@ dependencies {
     runtimeOnly(
             'com.h2database:h2',
     )
-
-    testImplementation(
-            'org.springframework.boot:spring-boot-starter-test',
-            'org.springframework.security:spring-security-test'
-    )
-    testImplementation('org.springframework.boot:spring-boot-starter-test') {
-        exclude group: 'junit', module: 'junit'
-    }
 }
 
 test {
