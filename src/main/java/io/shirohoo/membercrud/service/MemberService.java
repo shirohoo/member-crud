@@ -20,49 +20,45 @@ public class MemberService {
 
     @Transactional
     public void signUp(final MemberDto request) throws AlreadyExistsUsername {
-        log.info(String.format("request to membership: %s", request.getUsername()));
+        log.info("request to membership: {}", request.getUsername());
         verifyUsername(request);
         signUpComplete(request);
-        log.info(String.format("membership successful: %s", request.getUsername()));
+        log.info("membership successful: {}", request.getUsername());
     }
 
     private void verifyUsername(final MemberDto request) {
         if (memberRepository.existsByUsername(request.getUsername())) {
-            log.warn(String.format("cannot sign-up because the ID is already in use: %s", request.getUsername()));
+            log.warn("cannot sign-up because the id is already in use: {}", request.getUsername());
             throw new AlreadyExistsUsername();
         }
     }
 
     private void signUpComplete(final MemberDto request) {
         memberRepository.save(Member.of(request)
-            .encryptPassword(encoder));
+                .encryptPassword(encoder));
     }
 
     @Transactional
     public void update(final MemberDto request) {
-        log.info(String.format("request to password update: %s", request.getUsername()));
+        log.info("request to password update: {}", request.getUsername());
         updatePassword(findMemberByUsername(request), request);
-        log.info(String.format("password update successful: %s", request.getUsername()));
+        log.info("password update successful: {}", request.getUsername());
     }
 
     private void updatePassword(final Member member, final MemberDto request) {
         member.updatePassword(request)
-            .encryptPassword(encoder);
+                .encryptPassword(encoder);
     }
 
     private Member findMemberByUsername(final MemberDto request) {
         return memberRepository.findByUsername(request.getUsername())
-            .orElseThrow(() -> new UsernameNotFoundException("user not found !"));
+                .orElseThrow(() -> new UsernameNotFoundException("user not found !"));
     }
 
     @Transactional
     public void delete(final MemberDto request) {
-        log.info(String.format("request to cancel membership: %s", request.getUsername()));
-        deleteMember(findMemberByUsername(request));
-        log.info(String.format("cancel membership successful: %s", request.getUsername()));
-    }
-
-    private void deleteMember(final Member member) {
-        memberRepository.delete(member);
+        log.info("request to cancel membership: {}", request.getUsername());
+        memberRepository.delete(findMemberByUsername(request));
+        log.info("cancel membership successful: {}", request.getUsername());
     }
 }
