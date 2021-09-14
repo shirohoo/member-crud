@@ -2,7 +2,7 @@ package io.shirohoo.membercrud.exception;
 
 public class AlreadyExistsUsername extends RuntimeException {
     public AlreadyExistsUsername() {
-        super("ID already exists. please use a different ID !");
+        super("id already exists. please use a different id !");
     }
 
     public AlreadyExistsUsername(String message) {
