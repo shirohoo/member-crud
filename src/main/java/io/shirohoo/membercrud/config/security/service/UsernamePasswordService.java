@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class UsernamePasswordService implements UserDetailsService {
-
     private final MemberRepository memberRepository;
 
     @Override
@@ -19,5 +18,4 @@ public class UsernamePasswordService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("username not found !"))
                 .toUserDetails();
     }
-
 }
