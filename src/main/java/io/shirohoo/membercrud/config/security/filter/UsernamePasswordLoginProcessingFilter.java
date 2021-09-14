@@ -7,7 +7,6 @@ import io.shirohoo.membercrud.domain.member.dto.MemberDto;
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -20,7 +19,7 @@ public class UsernamePasswordLoginProcessingFilter extends AbstractAuthenticatio
     private final ObjectMapper objectMapper;
 
     public UsernamePasswordLoginProcessingFilter(final ObjectMapper objectMapper) {
-        super(new AntPathRequestMatcher("/api/v1/login", HttpMethod.POST.name()));
+        super(new AntPathRequestMatcher("/api/v1/login", "POST"));
         this.objectMapper = objectMapper;
     }
 
@@ -32,14 +31,19 @@ public class UsernamePasswordLoginProcessingFilter extends AbstractAuthenticatio
 
         final MemberDto memberDto = objectMapper.readValue(request.getReader(), MemberDto.class);
 
-        if (!StringUtils.hasText(memberDto.getUsername()) || !StringUtils.hasText(memberDto.getPassword())) {
+        if (isMissingUsernameOrPassword(memberDto)) {
             throw new InternalAuthenticationServiceException("no username or password entered.");
         }
 
-        return getAuthenticationManager().authenticate(new UsernamePasswordAuthenticationToken(memberDto.getUsername(), memberDto.getPassword()));
+        return getAuthenticationManager()
+                .authenticate(new UsernamePasswordAuthenticationToken(memberDto.getUsername(), memberDto.getPassword()));
     }
 
     private boolean isJsonType(final HttpServletRequest request) {
         return APPLICATION_JSON_VALUE.equalsIgnoreCase(request.getHeader("Content-Type"));
+    }
+
+    private boolean isMissingUsernameOrPassword(final MemberDto memberDto) {
+        return !StringUtils.hasText(memberDto.getUsername()) || !StringUtils.hasText(memberDto.getPassword());
     }
 }
