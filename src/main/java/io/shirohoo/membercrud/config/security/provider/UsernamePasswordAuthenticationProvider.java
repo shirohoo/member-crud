@@ -1,12 +1,12 @@
 package io.shirohoo.membercrud.config.security.provider;
 
-import io.shirohoo.membercrud.config.security.model.MemberAuthenticationContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -18,15 +18,15 @@ public final class UsernamePasswordAuthenticationProvider implements Authenticat
 
     @Override
     public Authentication authenticate(final Authentication authentication) throws AuthenticationException {
-        final MemberAuthenticationContext context = (MemberAuthenticationContext) userDetailsService.loadUserByUsername(authentication.getName());
-        final String encryptedPassword = context.getPassword();
+        final UserDetails userDetails = userDetailsService.loadUserByUsername(authentication.getName());
+        final String encryptedPassword = userDetails.getPassword();
         final String enteredPassword = (String) authentication.getCredentials();
 
         if (!passwordEncoder.matches(enteredPassword, encryptedPassword)) {
             throw new BadCredentialsException("password not matched !");
         }
 
-        return new UsernamePasswordAuthenticationToken(context.getUsername(), null, context.getAuthorities());
+        return new UsernamePasswordAuthenticationToken(userDetails.getUsername(), null, userDetails.getAuthorities());
     }
 
     @Override

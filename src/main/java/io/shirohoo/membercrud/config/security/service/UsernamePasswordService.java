@@ -1,6 +1,5 @@
 package io.shirohoo.membercrud.config.security.service;
 
-import io.shirohoo.membercrud.config.security.model.MemberAuthenticationContext;
 import io.shirohoo.membercrud.domain.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,9 +15,9 @@ public class UsernamePasswordService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
-        return MemberAuthenticationContext.of(
-            memberRepository.findByUsername(username)
+        return memberRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("username not found !"))
-        );
+                .toUserDetails();
     }
+
 }

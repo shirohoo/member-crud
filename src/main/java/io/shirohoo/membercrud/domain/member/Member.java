@@ -14,6 +14,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Entity
@@ -44,12 +46,20 @@ public class Member extends AbstractEntity {
         return new Member(memberDto.getUsername(), memberDto.getPassword());
     }
 
+    public UserDetails toUserDetails() {
+        return User.builder()
+                .username(username)
+                .password(password)
+                .authorities(getGrantedAuthorities())
+                .build();
+    }
+
     public Member encryptPassword(final PasswordEncoder encoder) {
         this.password = encoder.encode(this.password);
         return this;
     }
 
-    public Collection<? extends GrantedAuthority> getGrantedAuthorities() {
+    private Collection<? extends GrantedAuthority> getGrantedAuthorities() {
         return Collections.singleton(new SimpleGrantedAuthority(role.getRole()));
     }
 
@@ -57,4 +67,5 @@ public class Member extends AbstractEntity {
         this.password = memberDto.getPassword();
         return this;
     }
+
 }
