@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/member")
 public class MemberApiController {
-
     private final MemberService memberService;
 
     @PostMapping

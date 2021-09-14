@@ -17,7 +17,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.util.StringUtils;
 
 public class UsernamePasswordLoginProcessingFilter extends AbstractAuthenticationProcessingFilter {
-
     private final ObjectMapper objectMapper;
 
     public UsernamePasswordLoginProcessingFilter(final ObjectMapper objectMapper) {

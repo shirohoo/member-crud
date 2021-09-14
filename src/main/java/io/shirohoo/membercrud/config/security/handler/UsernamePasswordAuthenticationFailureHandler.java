@@ -14,7 +14,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
 public class UsernamePasswordAuthenticationFailureHandler implements AuthenticationFailureHandler {
-
     private final ObjectMapper objectMapper;
 
     public UsernamePasswordAuthenticationFailureHandler(final ObjectMapper objectMapper) {

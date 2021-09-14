@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class HttpResponse<T> {
-
     private String resCode;
     private String resMsg;
     private T resBody;

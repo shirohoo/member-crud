@@ -5,7 +5,6 @@ import lombok.Getter;
 
 @Getter
 public class MemberDto {
-
     @NotNull(message = "please enter your id.")
     private String username;
 
