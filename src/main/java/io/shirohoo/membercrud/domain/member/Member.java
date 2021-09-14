@@ -22,7 +22,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member extends AbstractEntity {
-
     @Column(unique = true, nullable = false)
     private String username;
 
@@ -67,5 +66,4 @@ public class Member extends AbstractEntity {
         this.password = memberDto.getPassword();
         return this;
     }
-
 }
