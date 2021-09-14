@@ -33,7 +33,6 @@ public class UsernamePasswordAuthenticationFailureHandler implements Authenticat
             errMsg = ex.getMessage();
         } else if (ex instanceof UsernameNotFoundException) {
             errMsg = ex.getMessage();
-
         } else if (ex instanceof InternalAuthenticationServiceException) {
             errMsg = ex.getMessage();
         }
